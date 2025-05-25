@@ -16,19 +16,35 @@ provider "aws" {
 
 
 resource "aws_dynamodb_table" "user_table" {
-  name           = "User"
-  billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "uuid"
-  range_key      = "email"
+  name         = "User"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "email"  
+  range_key    = "uuid"   
+
+  attribute {
+    name = "email"
+    type = "S"
+  }
 
   attribute {
     name = "uuid"
     type = "S"
   }
 
-  attribute {
-    name = "email"
-    type = "S"
+  
+  global_secondary_index {
+    name            = "UUIDIndex"
+    hash_key        = "uuid"
+    projection_type = "ALL"
+  }
+
+
+  point_in_time_recovery {
+    enabled = true  
+  }
+
+  tags = {
+    Environment = "production"
+    Project     = "electrostore"
   }
 }
-
