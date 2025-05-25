@@ -11,12 +11,12 @@ variable "user_lambda_name" {
   default = "user-service-lambda"
 }
 
-variable "user_lambda_zip" {
-  default = "../user/user.zip" # Ruta al ZIP que tendrá tu Lambda de usuario
+variable "user_register_zip" {
+  default = "../user/register.zip"
 }
 
-variable "user_lambda_handler" {
-  default = "index.handler" # index.js y función exportada "handler"
+variable "user_register_handler" {
+  default = "index.handler"
 }
 
 variable "user_api_path" {
@@ -37,14 +37,5 @@ variable "lambda_runtime" {
   default = "nodejs22.x"
 }
 
-# Puedes agregar más si vas a tener lambdas separadas por acción:
-variable "user_register_handler" {
-  default = "index.handler"
-}
 
-
-
-variable "user_register_zip" {
-  default = "../user/register.zip"
-}
 
