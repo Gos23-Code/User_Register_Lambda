@@ -1,4 +1,3 @@
-const bcrypt = require("bcryptjs");
 const { v4: uuidv4 } = require("uuid");
 
 class User {
@@ -9,10 +8,6 @@ class User {
     this.phone = phone;
     this.createdAt = new Date().toISOString();
     this.password = password; // plain text por ahora
-  }
-
-  async hashPassword() {
-    this.password = await bcrypt.hash(this.password, 10);
   }
 
   toItem() {
